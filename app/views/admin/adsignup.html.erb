@@ -1,0 +1,27 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">管理者登録</div>
+    <div class="form users-form">
+      <div class="form-body">
+          <% if flash[:errors] %>
+            <% flash[:errors].each do |message| %>
+                <div class="form-error">
+                  <%= message %>
+                </div>
+            <% end %>
+          <% end %>
+            <%= form_with url:'/admin/adcreate' do %>
+                <p>管理者氏名</p>
+                <input name="admin_name">
+                <p>ID</p>
+                <input name="admin_user">
+                <p>メールアドレス</p>
+                <input name="admin_email">
+                <p>パスワード</p>
+                <input type="password" name="admin_password">
+                <input type="submit" value="管理者登録">
+            <% end %>
+      </div>
+    </div>
+  </div>
+</div>

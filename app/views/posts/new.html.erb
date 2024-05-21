@@ -1,0 +1,29 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">申請する</h1>
+    <div class="form">
+      <%= form_with url:'/posts/create' do %>
+        <div class="form-body">
+          <% if flash[:errors] %>
+            <% flash[:errors].each do |message| %>
+              <div class="form-error">
+                <%= message %>
+              </div>
+            <% end %>
+          <% end %>
+          <%= hidden_field_tag :user_id, @current_user.username %>
+          <div>
+          <div><%=@current_user.username %></div>
+            <select name="title">
+            <option value="住所変更">住所変更</option>
+            <option value="口座変更">口座変更</option>
+            <option value="通勤経路変更">通勤経路変更</option>
+            </select>
+          </div>
+          <textarea name="body"></textarea>
+          <input type="submit" value="申請">
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>  

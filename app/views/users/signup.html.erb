@@ -1,0 +1,27 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">新規登録</div>
+    <div class="form users-form">
+      <div class="form-body">
+          <% if flash[:errors] %>
+            <% flash[:errors].each do |message| %>
+                <div class="form-error">
+                  <%= message %>
+                </div>
+            <% end %>
+          <% end %>
+            <%= form_with url:'/users/create' do %>
+                <p>社員氏名</p>
+                <input name="username">
+                <p>ID</p>
+                <input name="sid">
+                <p>メールアドレス</p>
+                <input name="email">
+                <p>パスワード</p>
+                <input type="password" name="password">
+                <input type="submit" value="新規登録">
+            <% end %>
+      </div>
+    </div>
+  </div>
+</div>

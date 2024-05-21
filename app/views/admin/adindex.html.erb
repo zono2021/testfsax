@@ -1,0 +1,16 @@
+<div class="main posts-index">
+  <div class="container">
+    <% @posts.each do |post| %>
+      <div class="posts-index-item">
+      <div>▼申請日：<%= post.created_at.strftime('%Y/%m/%d [%H:%M]') %></div>
+      【申請者：<%= post.user_id %>】
+      <div>項目：<%= post.title %></div>
+      <div class="posts-index-item"><%= post.body %></div>
+        <div class="post-menus">
+          <%= link_to("編集","/admin/#{post.id}/adedit") %>
+          <%= link_to("削除","/admin/#{post.id}/addestroy",data:{turbo_method: :post}) %>
+          </div>
+      </div>
+      <% end %>
+  </div>
+</div>

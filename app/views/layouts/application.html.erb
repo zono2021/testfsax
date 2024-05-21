@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portal</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-logo">
+        <%= link_to("Portal","/") %>
+      </div>
+      <ul class="header-menus">
+        <% if current_page?("/admin/adindex") %>
+          <li>
+          <%= link_to("一覧","/admin/adindex") %>
+          </li>
+          <li>
+          <%= link_to("ログアウト","/adlogout",data:{turbo_method: :post}) %>
+          </li>
+          <% elsif current_page?("/adsignup") or current_page?("/adlogin") %>
+          <li>
+          <%= link_to("新規登録","/adsignup") %>
+          </li>
+          <li>
+          <%= link_to("ログアウト","/adlogout",data:{turbo_method: :post}) %>
+          </li>
+          <% elsif @current_user %>
+          <li>
+            <%= link_to(@current_user.username,"/posts/index") %>
+          </li>
+          <li>
+            <%= link_to("申請一覧","/posts/index") %>
+          </li>
+          <li>
+            <%= link_to("新規申請","/posts/new") %>
+          </li>
+          <li>
+            <%= link_to("ログアウト","/logout",data:{turbo_method: :post}) %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to("登録","/signup") %>
+          </li>
+          <li>
+            <%= link_to("ログイン","/login") %>
+          </li>
+        <% end %>
+      </ul>
+    </header>
+    <%= yield %>
+  </body>
+</html>

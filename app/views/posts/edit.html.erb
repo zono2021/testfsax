@@ -1,0 +1,24 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">編集する</h1>
+    <div class="form">
+      <%= form_with url:"/posts/#{@post.id}/update",local:true do |form|%>
+      <div class="form-body">
+        <% if flash[:errors] %>
+          <% flash[:errors].each do |message| %>
+            <div class="form-error">
+                <%= message %>
+            </div>
+          <% end %>
+        <% end %>
+         <div>▼申請日：<%= @post.created_at.strftime('%Y/%m/%d [%H:%M]') %></div>
+         <div>　　更新日：<%= @post.updated_at.strftime('%Y/%m/%d [%H:%M]') %></div>
+         申請者：<textarea rows="1" readonly name="user_id"><%= @post.user_id %></textarea>
+         項目：<textarea rows="1" readonly name="title"><%= @post.title %></textarea>
+         申請内容：<textarea rows="5" name="body"><%=@post.body %></textarea>
+        <input type="submit" value="保存">
+      </div>
+     <% end %>
+    </div>
+  </div>
+</div>
